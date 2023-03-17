@@ -8,8 +8,10 @@ import lombok.Data;
 @ApiModel("ws通知返回对象")
 public class NoticeWebsocketResp<T> {
 
+
+
     @ApiModelProperty(value = "通知状态")
-    private Integer noticeStatus;
+    private Integer noticeStatus; // -1：异常
 
     @ApiModelProperty(value = "通知类型")
     private String noticeType;

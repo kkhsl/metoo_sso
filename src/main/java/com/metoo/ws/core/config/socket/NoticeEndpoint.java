@@ -20,6 +20,8 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @ServerEndpoint 注解是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端,
@@ -71,6 +73,7 @@ public class NoticeEndpoint {
     private static IZabbixService zabbixService;
     private static ITopologyService topologyService;
     private static IProblemService problemService;
+    private static IGatherAlarmService gatherAlarmService;
     @Autowired
     public void setNetworkElementService(INetworkElementService networkElementService) {
         NoticeEndpoint.networkElementService = networkElementService;
@@ -91,6 +94,10 @@ public class NoticeEndpoint {
     @Autowired
     public void setTopologyService(ITopologyService topologyService){
         NoticeEndpoint.topologyService = topologyService;
+    }
+    @Autowired
+    public void setGatherAlarmService(IGatherAlarmService gatherAlarmService) {
+        NoticeEndpoint.gatherAlarmService = gatherAlarmService;
     }
     /**
      * 连接成功后调用的方法
@@ -205,56 +212,121 @@ public class NoticeEndpoint {
     }
 
 
+//    /**
+//     * 收到客户端消息后调用的方法
+//     * @param message
+//     * @param session
+//     */
+//    @OnMessage(maxMessageSize = 1048576)
+//    public void onMessage(String message, Session session) throws Exception {
+//        log.info("收到来自窗口 " + this.userId + " 的信息:" + message);
+//
+//        // 测试聊天
+////        NoticeWebsocket.sendMessage("测试推送消息");
+//        // "收到来自窗口 " + this.userId + " 的信息:" + message
+////        NoticeWebsocketResp noticeWebsocketResp = new NoticeWebsocketResp();
+////        noticeWebsocketResp.setNoticeType("1");
+////        noticeWebsocketResp.setNoticeInfo("收到来自窗口 " + this.userId + " 的信息:" + message);
+////        sendMessageByUserId("好友Id", getNeAvailable(message));
+//
+//        // 接收消息
+////        parseParams(message);
+//        parseParams2(message);
+//
+////        Map<String, Object> map = (Map) JSON.parse(message);
+//        Map map = JSONObject.parseObject(message, Map.class);
+//        // 校验参数，调用指定api
+//        if (map.get("noticeType").equals("1")) {
+//            taskSendMessageByUserId(this.sid, getNeAvailable(message));
+//        }
+//        if (map.get("noticeType").equals("2")) {
+//            taskSendMessageByUserId(this.sid, snmpStatus(map.get("params")));
+//        }
+//        if (map.get("noticeType").equals("3")) {
+//            taskSendMessageByUserId(this.sid, getItemLastValue(map.get("params")));
+//        }
+//        if (map.get("noticeType").equals("4")) {
+//            Object prm = this.parseParams(map);
+//            taskSendMessageByUserId(this.sid, getMacDT(prm));
+//        }
+//        if (map.get("noticeType").equals("5")) {
+//            taskSendMessageByUserId(this.sid, interfaceEvent(map.get("params").toString()));
+//        }
+//        if (map.get("noticeType").equals("6")) {
+//            taskSendMessageByUserId(this.sid, getProblem(map.get("params")));
+//        }
+//        if (map.get("noticeType").equals("7")) {
+//            taskSendMessageByUserId(this.sid, getProblemCpu(map.get("params")));
+//        }if (map.get("noticeType").equals("8")) {
+//            taskSendMessageByUserId(this.sid, getProblemLimit(map.get("params")));
+//        }if (map.get("noticeType").equals("9")) {
+//            Object prm = this.parseParams(map);
+//            taskSendMessageByUserId(this.sid, getNeInterfaceDT(prm));
+//        }
+//        if (map.get("noticeType").equals("10")) {
+//            taskSendMessageByUserId(this.sid, gatherAlarm(map.get("params")));
+//        }
+//
+//        if (map.get("noticeType").equals("11")) {
+//            taskSendMessageByUserId(this.sid, terminalOnline(map.get("params")));
+//        }
+//        // 返回数据给当前用户
+////        taskSendMessageByUserId(this.sid, getNeAvailable(message));
+//    }
+
     /**
      * 收到客户端消息后调用的方法
      * @param message
-     * @param session
      */
     @OnMessage(maxMessageSize = 1048576)
-    public void onMessage(String message, Session session) {
-        log.info("收到来自窗口 " + this.userId + " 的信息:" + message);
+    public void onMessage(String message) {
+        ExecutorService exe = Executors.newFixedThreadPool(11);
+        exe.execute(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (this){
+                    // 接收消息
+                    parseParams2(message);
+                    Map map = JSONObject.parseObject(message, Map.class);
+                    // 校验参数，调用指定api
+                    if (map.get("noticeType").equals("9")) {
+                        Object prm = parseParams(map);
+                        taskSendMessageByUserId(sid, getNeInterfaceDT(prm));
+                    }
+                    if (map.get("noticeType").equals("1")) {
+                        taskSendMessageByUserId(sid, getNeAvailable(message));
+                    }
+                    if (map.get("noticeType").equals("2")) {
+                        taskSendMessageByUserId(sid, snmpStatus(map.get("params")));
+                    }
+                    if (map.get("noticeType").equals("3")) {
+                        taskSendMessageByUserId(sid, getItemLastValue(map.get("params")));
+                    }
+                    if (map.get("noticeType").equals("4")) {
+                        Object prm = parseParams(map);
+                        taskSendMessageByUserId(sid, getMacDT(prm));
+                    }
+                    if (map.get("noticeType").equals("5")) {
+                        taskSendMessageByUserId(sid, interfaceEvent(map.get("params").toString()));
+                    }
+                    if (map.get("noticeType").equals("6")) {
+                        taskSendMessageByUserId(sid, getProblem(map.get("params")));
+                    }
+                    if (map.get("noticeType").equals("7")) {
+                        taskSendMessageByUserId(sid, getProblemCpu(map.get("params")));
+                    }if (map.get("noticeType").equals("8")) {
+                        taskSendMessageByUserId(sid, getProblemLimit(map.get("params")));
+                    }
+                    if (map.get("noticeType").equals("10")) {
+                        taskSendMessageByUserId(sid, gatherAlarm(map.get("params")));
+                    }
+                    if (map.get("noticeType").equals("11")) {
+                        taskSendMessageByUserId(sid, terminalOnline(map.get("params")));
+                    }
+                }
+            }
+        });
 
-        // 测试聊天
-//        NoticeWebsocket.sendMessage("测试推送消息");
-        // "收到来自窗口 " + this.userId + " 的信息:" + message
-//        NoticeWebsocketResp noticeWebsocketResp = new NoticeWebsocketResp();
-//        noticeWebsocketResp.setNoticeType("1");
-//        noticeWebsocketResp.setNoticeInfo("收到来自窗口 " + this.userId + " 的信息:" + message);
-//        sendMessageByUserId("好友Id", getNeAvailable(message));
-
-        // 接收消息
-//        parseParams(message);
-        parseParams2(message);
-
-//        Map<String, Object> map = (Map) JSON.parse(message);
-        Map map = JSONObject.parseObject(message, Map.class);
-        // 校验参数，调用指定api
-        if (map.get("noticeType").equals("1")) {
-            taskSendMessageByUserId(this.sid, getNeAvailable(message));
-        }
-        if (map.get("noticeType").equals("2")) {
-            taskSendMessageByUserId(this.sid, snmpStatus(map.get("params")));
-        }
-        if (map.get("noticeType").equals("3")) {
-            taskSendMessageByUserId(this.sid, getItemLastValue(map.get("params")));
-        }
-        if (map.get("noticeType").equals("4")) {
-            taskSendMessageByUserId(this.sid, getMacDT(map.get("params")));
-        }
-        if (map.get("noticeType").equals("5")) {
-            taskSendMessageByUserId(this.sid, interfaceEvent(map.get("params").toString()));
-        }
-        if (map.get("noticeType").equals("6")) {
-            taskSendMessageByUserId(this.sid, getProblem(map.get("params")));
-        } if (map.get("noticeType").equals("7")) {
-            taskSendMessageByUserId(this.sid, getProblemCpu(map.get("params")));
-        }if (map.get("noticeType").equals("8")) {
-            taskSendMessageByUserId(this.sid, getProblemLimit(map.get("params")));
-        }if (map.get("noticeType").equals("9")) {
-            taskSendMessageByUserId(this.sid, getNeInterfaceDT(map.get("params")));
-        }
-        // 返回数据给当前用户
-//        taskSendMessageByUserId(this.sid, getNeAvailable(message));
     }
 
     // 处理数据 关联到一个账号（存在一个账号多地登陆时，无法分别发送给登录用户，只能统一发送给这个账号的所有登录同一数据）
@@ -281,15 +353,19 @@ public class NoticeEndpoint {
     public void parseParams2(String message){
         Map map = (Map) JSON.parse(message);
         if(map != null && !map.isEmpty()){
-            Map userMap = taskParams.get(this.sid);
-            if(map.get("noticeType") != null){
-                if(userMap.get(map.get("noticeType").toString()) != null){
-                    userMap.remove(map.get("noticeType").toString());
-                    userMap.put(map.get("noticeType"), message);
-                }else{
-                    userMap.put(map.get("noticeType"), message);
+            if(map.get("time") == null || "".equals(map.get("time"))){
+                Map userMap = taskParams.get(this.sid);
+                if(map.get("noticeType") != null){
+                    if(userMap.get(map.get("noticeType").toString()) != null){
+                        userMap.remove(map.get("noticeType").toString());
+                        userMap.put(map.get("noticeType"), message);
+                    }else{
+                        userMap.put(map.get("noticeType"), message);
+                    }
+                    taskParams.put(this.sid, userMap);
                 }
-                taskParams.put(this.sid, userMap);
+            }else{
+                taskParams.get(this.sid).clear();
             }
         }
     }
@@ -317,7 +393,7 @@ public class NoticeEndpoint {
         return resp;
     }
 
-    public NoticeWebsocketResp getMacDT(Object params){
+    public NoticeWebsocketResp getMacDT(Object params)  {
         NoticeWebsocketResp resp = this.topologyService.getMacDT(JSONObject.toJSONString(params));
         return resp;
     }
@@ -335,6 +411,14 @@ public class NoticeEndpoint {
     }
     public NoticeWebsocketResp getNeInterfaceDT(Object params){
         NoticeWebsocketResp resp = networkElementService.getNeInterfaceDT(JSONObject.toJSONString(params));
+        return resp;
+    }
+    public NoticeWebsocketResp gatherAlarm(Object params){
+        NoticeWebsocketResp resp = gatherAlarmService.getAlarms(JSONObject.toJSONString(params));
+        return resp;
+    }
+    public NoticeWebsocketResp terminalOnline(Object params){
+        NoticeWebsocketResp resp = networkElementService.getTerminalOnline(JSONObject.toJSONString(params));
         return resp;
     }
     /**
@@ -375,12 +459,6 @@ public class NoticeEndpoint {
     public void ExecutionTimer(){
         outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
             Map<String, String> params = taskParams.get(key);
-//            String userId = null;
-//            for(String key2 : params.keySet()){
-//                if(key2.equals("userId")){
-//                    userId = params.get(key2);break;
-//                }
-//            }
             for(String type : params.keySet()){
                 if(type.equals("1")){
                     Map param = JSONObject.parseObject(params.get(type), Map.class);
@@ -397,10 +475,7 @@ public class NoticeEndpoint {
                 }else if(type.equals("8")){
                     Map param = JSONObject.parseObject(params.get(type), Map.class);
                     taskSendMessageByUserId(key, getProblemLimit(param.get("params")));
-                }else if(type.equals("9")){
-                    Map param = JSONObject.parseObject(params.get(type), Map.class);
-                    taskSendMessageByUserId(key, getNeInterfaceDT(param.get("params")));
-                }else{
+                }else {
                     continue ;// outCycle
                 }
             }
@@ -408,15 +483,79 @@ public class NoticeEndpoint {
     }
 
     @Scheduled(cron = "*/10 * * * * ?")
-    public void topologyProblem() throws InterruptedException {
+    public void task1(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+                if(type.equals("1")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, getNeAvailable(JSON.toJSONString(param)));
+                }else {
+                    continue ;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "*/10 * * * * ?")
+    public void task2(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+                if(type.equals("2")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, snmpStatus(param.get("params")));
+                }else {
+                    continue ;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "*/10 * * * * ?")
+    public void task3() throws InterruptedException {
         outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
             Map<String, String> params = taskParams.get(key);
             for(String type : params.keySet()){
                 if(type.equals("3")){
-                    Thread.sleep(10000);
                     Map param = JSONObject.parseObject(params.get(type), Map.class);
                     taskSendMessageByUserId(key, getItemLastValue(param.get("params")));
                 }else{
+                    continue ;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "0 */1 * * * ?")
+//    @Scheduled(cron = "*/10 * * * * ?")
+    public void ExecutionTimer2() throws Exception {
+        // 校验用户是否已断开，或断开时删除该用户定时任务信息
+        outCycle:for (String key : taskParams.keySet()){
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+                if(type.equals("4")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    Object prm = this.parseParams(param);
+                    NoticeWebsocketResp resp = getMacDT(prm);
+                    resp.setNoticeType("4");
+                    taskSendMessageByUserId(key, resp);
+                }else {
+                    continue ;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "*/10 * * * * ?")
+    public void task5(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+                if(type.equals("5")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, interfaceEvent(param.get("params").toString()));
+                }else {
                     continue ;// outCycle
                 }
             }
@@ -430,8 +569,38 @@ public class NoticeEndpoint {
             for(String type : params.keySet()){
                 if(type.equals("6")){
                     Map param = JSONObject.parseObject(params.get(type), Map.class);
-                    taskSendMessageByUserId(key, getProblem(param.get("params")));
-                    break ;
+                    taskSendMessageByUserId(key, gatherAlarm(param.get("params")));
+                    break;
+                }else {
+                    continue;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "*/10 * * * * ?")
+    public void task7(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+               if(type.equals("7")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, getProblemCpu(param.get("params")));
+                }else {
+                    continue ;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "*/10 * * * * ?")
+    public void task8(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+              if(type.equals("8")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, getProblemLimit(param.get("params")));
                 }else {
                     continue ;// outCycle
                 }
@@ -440,18 +609,64 @@ public class NoticeEndpoint {
     }
 
     @Scheduled(cron = "0 */1 * * * ?")
-    public void ExecutionTimer2(){
+    public void topologyDeviceDT() throws InterruptedException {
         outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
             Map<String, String> params = taskParams.get(key);
             for(String type : params.keySet()){
-                if(type.equals("4")){
+                if(type.equals("9")){
                     Map param = JSONObject.parseObject(params.get(type), Map.class);
-                    taskSendMessageByUserId(key, getMacDT(param.get("params")));
-                }else {
+                    Object prm = this.parseParams(param);
+                    taskSendMessageByUserId(key, getNeInterfaceDT(prm));
+                }else{
                     continue ;// outCycle
                 }
             }
         }
+    }
+
+    @Scheduled(cron = "0 */1 * * * ?")
+    public void gatherAlarm(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+                if(type.equals("10")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, gatherAlarm(param.get("params")));
+                    break;
+                }else {
+                    continue;// outCycle
+                }
+            }
+        }
+    }
+
+    @Scheduled(cron = "0 */1 * * * ?")
+    public void terminalOnline(){
+        outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
+            Map<String, String> params = taskParams.get(key);
+            for(String type : params.keySet()){
+                if(type.equals("11")){
+                    Map param = JSONObject.parseObject(params.get(type), Map.class);
+                    taskSendMessageByUserId(key, terminalOnline(param.get("params")));
+                    break;
+                }else {
+                    continue;// outCycle
+                }
+            }
+        }
+    }
+
+    public Object parseParams(Map param){
+        if(param != null){
+            if(param.get("time") != null){
+                Map map = new HashMap();
+                map.put("time", param.get("time"));
+                map.put("params", param.get("params"));
+                return map;
+            }
+            return param.get("params");
+        }
+        return "";
     }
 
 }

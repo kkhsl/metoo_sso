@@ -53,4 +53,10 @@ public class NetworkElementServiceImpl implements INetworkElementService {
         return result;
     }
 
+    @Override
+    public NoticeWebsocketResp getTerminalOnline(String params) {
+        String url = "/websocket/api/network/ne/partition/terminal";
+        NoticeWebsocketResp result = restTemplateUtil.getObjByStr(url, params);
+        return result;
+    }
 }

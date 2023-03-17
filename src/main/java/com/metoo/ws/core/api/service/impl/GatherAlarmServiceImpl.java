@@ -1,26 +1,20 @@
 package com.metoo.ws.core.api.service.impl;
 
-import com.metoo.ws.core.api.service.ITopologyService;
+import com.metoo.ws.core.api.service.IGatherAlarmService;
 import com.metoo.ws.core.config.http.RestTemplateUtil;
 import com.metoo.ws.core.config.socket.NoticeWebsocketResp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static java.lang.Thread.sleep;
-
 @Service
-public class TopologyServiceImpl implements ITopologyService {
-
+public class GatherAlarmServiceImpl implements IGatherAlarmService {
 
     @Autowired
     private RestTemplateUtil restTemplateUtil;
 
     @Override
-    public NoticeWebsocketResp getMacDT(String params) {
-        String url = "/websocket/api/zabbix/mac/dt";
+    public NoticeWebsocketResp getAlarms(String params) {
+        String url = "/websocket/api/gather/alarm/list";
         NoticeWebsocketResp result = restTemplateUtil.getObjByStr(url, params);
         return result;
     }

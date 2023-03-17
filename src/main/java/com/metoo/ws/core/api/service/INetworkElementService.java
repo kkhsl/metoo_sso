@@ -15,5 +15,7 @@ public interface INetworkElementService {
 
     NoticeWebsocketResp getNeInterfaceDT(String params);
 
+    NoticeWebsocketResp getTerminalOnline(String params);
+
 
 }

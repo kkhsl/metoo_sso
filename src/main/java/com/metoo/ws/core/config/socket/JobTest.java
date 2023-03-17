@@ -9,6 +9,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class JobTest {
 
+    @Scheduled(cron = "*/5 * * * * ?")
+    public void ws() throws InterruptedException {
+            for (int i = 1; i <= 10; i++){
+                Thread.sleep(1000);
+                System.out.println("a" + i);
+            }
+    }
+
+    @Scheduled(cron = "*/5 * * * * ?")
+    public void wss() throws InterruptedException {
+        for (int i = 1; i <= 10; i++){
+            Thread.sleep(1000);
+            System.out.println("b" + i);
+        }
+    }
+
 //    @Async
 //    @Scheduled(cron = "*/3 * * * * ?")
     public void w() throws InterruptedException {
