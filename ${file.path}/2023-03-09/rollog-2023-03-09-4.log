@@ -1,0 +1,161 @@
+2023-03-09-14:44[main] [INFO ] com.metoo.nspm.Application - Starting Application using Java 1.8.0_131 on WIN-C343LASFC79 with PID 10712 (E:\java\project\nspm\ws\target\classes started by Administrator in E:\java\project\nspm\ws)
+2023-03-09-14:44[main] [INFO ] com.metoo.nspm.Application - The following profiles are active: dev
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.metoo.nspm.core.config.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$a93a808a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mybatis-org.mybatis.spring.boot.autoconfigure.MybatisProperties' of type [org.mybatis.spring.boot.autoconfigure.MybatisProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration' of type [org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration$$EnhancerBySpringCGLIB$$cd6f2f6f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleMapper' of type [com.sun.proxy.$Proxy76] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'resMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'resMapper' of type [com.sun.proxy.$Proxy77] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'resService' of type [com.metoo.nspm.core.service.impl.ResServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleResMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleResMapper' of type [com.sun.proxy.$Proxy80] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleResServiceImpl' of type [com.metoo.nspm.core.service.impl.RoleResServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleServiceImpl' of type [com.metoo.nspm.core.service.impl.RoleServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'getRealm' of type [com.metoo.nspm.core.config.shiro.MyRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sessionStorageEvaluator' of type [org.apache.shiro.mgt.DefaultSessionStorageEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'getDefaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$adb3bbef] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-09-14:44[main] [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8980 (http)
+2023-03-09-14:44[main] [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2557 ms
+2023-03-09-14:44[main] [INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static com.metoo.nspm.core.api.service.WUserService com.metoo.nspm.core.config.interceptor.MyInterceptor.userService
+2023-03-09-14:44[main] [INFO ] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-09-14:44[main] [INFO ] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2023-03-09-14:44[main] [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8980 (http) with context path '/wss'
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_1
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_2
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_3
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_4
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: getUserUsingGET_1
+2023-03-09-14:44[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_5
+2023-03-09-14:44[main] [INFO ] com.metoo.nspm.Application - Started Application in 4.298 seconds (JVM running for 6.119)
+2023-03-09-14:46[http-nio-8980-exec-2] [INFO ] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-03-09-14:46[http-nio-8980-exec-2] [INFO ] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-03-09-14:46[http-nio-8980-exec-2] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Enabling session validation scheduler...
+2023-03-09-14:46[http-nio-8980-exec-2] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 568a4368-7fb4-4a2b-8d40-e5e785c6fc2b用户Id:1连接开启！
+2023-03-09-14:46[http-nio-8980-exec-1] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"9",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:46[http-nio-8980-exec-3] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"9",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:46[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:46[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:46[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 568a4368-7fb4-4a2b-8d40-e5e785c6fc2b连接断开！
+2023-03-09-14:47[http-nio-8980-exec-5] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - cdbb13de-ac3b-462b-a47a-f36b8d8e222f用户Id:1连接开启！
+2023-03-09-14:47[http-nio-8980-exec-6] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:47[http-nio-8980-exec-6] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:47[http-nio-8980-exec-6] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - cdbb13de-ac3b-462b-a47a-f36b8d8e222f连接断开！
+2023-03-09-14:47[http-nio-8980-exec-7] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - d61d5338-ac25-4595-9d8d-57639118335b用户Id:1连接开启！
+2023-03-09-14:47[http-nio-8980-exec-8] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:47[http-nio-8980-exec-8] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:47[http-nio-8980-exec-8] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - d61d5338-ac25-4595-9d8d-57639118335b连接断开！
+2023-03-09-14:47[http-nio-8980-exec-9] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 0c87c28c-8b8d-4e4e-b227-0d7cc70526c6用户Id:1连接开启！
+2023-03-09-14:47[http-nio-8980-exec-10] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:47[http-nio-8980-exec-10] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:47[http-nio-8980-exec-10] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 0c87c28c-8b8d-4e4e-b227-0d7cc70526c6连接断开！
+2023-03-09-14:48[http-nio-8980-exec-2] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - c6bd2b51-805f-4dff-b89d-9713a4517ab6用户Id:1连接开启！
+2023-03-09-14:48[http-nio-8980-exec-1] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:48[http-nio-8980-exec-1] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:48[http-nio-8980-exec-1] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - c6bd2b51-805f-4dff-b89d-9713a4517ab6连接断开！
+2023-03-09-14:48[http-nio-8980-exec-3] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 9b669d55-b8ba-4d56-b702-f7808eaf76be用户Id:1连接开启！
+2023-03-09-14:48[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:48[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:48[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 9b669d55-b8ba-4d56-b702-f7808eaf76be连接断开！
+2023-03-09-14:48[http-nio-8980-exec-5] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - f49e6b60-c6ac-4186-a318-911e657292e9用户Id:1连接开启！
+2023-03-09-14:48[http-nio-8980-exec-6] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:49[http-nio-8980-exec-6] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:49[http-nio-8980-exec-6] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - f49e6b60-c6ac-4186-a318-911e657292e9连接断开！
+2023-03-09-14:49[http-nio-8980-exec-7] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 4386ee89-9fd1-470d-98d7-9d19cf4bac5f用户Id:1连接开启！
+2023-03-09-14:49[http-nio-8980-exec-8] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{
+        "noticeType":"10",
+        "userId":"1", 
+        "params":{
+            "currentPage":1,
+            "pageSize":15,
+            "time":"2023-03-09 14:20:00"
+        }
+    }
+2023-03-09-14:50[http-nio-8980-exec-8] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 错误
+2023-03-09-14:50[http-nio-8980-exec-8] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 4386ee89-9fd1-470d-98d7-9d19cf4bac5f连接断开！

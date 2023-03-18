@@ -1,0 +1,197 @@
+2023-03-14-16:17[main] [INFO ] com.metoo.nspm.Application - Starting Application using Java 1.8.0_131 on WIN-C343LASFC79 with PID 11532 (E:\java\project\nspm\ws\target\classes started by Administrator in E:\java\project\nspm\ws)
+2023-03-14-16:17[main] [INFO ] com.metoo.nspm.Application - The following profiles are active: dev
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.metoo.nspm.core.config.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$6ab3c834] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mybatis-org.mybatis.spring.boot.autoconfigure.MybatisProperties' of type [org.mybatis.spring.boot.autoconfigure.MybatisProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration' of type [org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration$$EnhancerBySpringCGLIB$$8ee87719] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleMapper' of type [com.sun.proxy.$Proxy76] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'resMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'resMapper' of type [com.sun.proxy.$Proxy77] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'resService' of type [com.metoo.nspm.core.service.impl.ResServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleResMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleResMapper' of type [com.sun.proxy.$Proxy80] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleResServiceImpl' of type [com.metoo.nspm.core.service.impl.RoleResServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'roleServiceImpl' of type [com.metoo.nspm.core.service.impl.RoleServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'getRealm' of type [com.metoo.nspm.core.config.shiro.MyRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'sessionStorageEvaluator' of type [org.apache.shiro.mgt.DefaultSessionStorageEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'getDefaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$6f2d0399] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-14-16:17[main] [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8980 (http)
+2023-03-14-16:17[main] [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2432 ms
+2023-03-14-16:17[main] [INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static com.metoo.nspm.core.api.service.WUserService com.metoo.nspm.core.config.interceptor.MyInterceptor.userService
+2023-03-14-16:17[main] [INFO ] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-14-16:17[main] [INFO ] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2023-03-14-16:17[main] [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8980 (http) with context path '/wss'
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_1
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_2
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_3
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_4
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: getUserUsingGET_1
+2023-03-14-16:17[main] [INFO ] springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: testUsingGET_5
+2023-03-14-16:17[main] [INFO ] com.metoo.nspm.Application - Started Application in 4.57 seconds (JVM running for 6.637)
+2023-03-14-16:25[http-nio-8980-exec-1] [INFO ] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-03-14-16:25[http-nio-8980-exec-1] [INFO ] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2023-03-14-16:25[http-nio-8980-exec-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Enabling session validation scheduler...
+2023-03-14-16:25[http-nio-8980-exec-1] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 934ad3f3-4155-4e3a-9a6a-0e54c3d0e4fa用户Id:1连接开启！
+2023-03-14-16:25[http-nio-8980-exec-1] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{"noticeType":"4","userId":"1","time":"","params":["a683f9f9-1814-4615-907c-c351c34301f5","eef0db41-44fc-4ca1-b927-578f98fcd039","74df5457-4e4c-4a03-9373-0244bab29693","49a1e331-8c8a-46b5-b4a4-4c1b313846dc"]}
+2023-03-14-16:26[http-nio-8980-exec-2] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{"noticeType":"4","userId":"1","time":"","params":["a683f9f9-1814-4615-907c-c351c34301f5","eef0db41-44fc-4ca1-b927-578f98fcd039","74df5457-4e4c-4a03-9373-0244bab29693","49a1e331-8c8a-46b5-b4a4-4c1b313846dc", "1edcb79d-1261-447b-90e4-8e1cb248cbbc"]}
+2023-03-14-16:26[http-nio-8980-exec-4] [INFO ] com.metoo.nspm.core.config.socket.NoticeEndpoint - 收到来自窗口 1 的信息:{"noticeType":"9","userId":"1","time":"","params":{"teamGroupCustomiahRHDep4rHsi23KSbBi4BMJEzAD2N":[{"uuid":"7bfa8c56-a478-4fcf-8220-07eb9c9fb539","interface":["Vl1599","Vl1588","Lo2","Lo1","Lo0","Vl200","Vl120","Vl100","Vl20","Vl10","Vl1","Nu0","Gi0/3.105","Gi0/3.104","Gi0/3.103","Gi0/3.102","Gi0/3.101","Gi0/9","Gi0/8","Gi0/7","Gi0/6","Gi0/5","Gi0/4","Gi0/3","Gi0/2","Gi0/1","Gi0/0"]},{"uuid":"4804a11d-6393-4287-9307-e4ee141e8ed1","interface":["Vl1","Nu0","Gi0/9","Gi0/8","Gi0/7","Gi0/6","Gi0/5","Gi0/4","Gi0/3","Gi0/2","Gi0/1","Gi0/0"]},{"uuid":"da9b3c12-b14a-4f72-b97c-7a6a706b7d57","interface":["Vl10","Vl1","Nu0","Gi0/9","Gi0/8","Gi0/7","Gi0/6","Gi0/5","Gi0/4","Gi0/3","Gi0/2","Gi0/1","Gi0/0"]}],"teamGroupCustom7cGDK5EnQKncZ6BZWXBX6nYS4bfiWD":[{"uuid":"da9b3c12-b14a-4f72-b97c-7a6a706b7d57","interface":["Vl10","Vl1","Nu0","Gi0/9","Gi0/8","Gi0/7","Gi0/6","Gi0/5","Gi0/4","Gi0/3","Gi0/2","Gi0/1","Gi0/0"]},{"uuid":"1edcb79d-1261-447b-90e4-8e1cb248cbbc","interface":["Vl10","Vl1","Nu0","Gi0/9","Gi0/8","Gi0/7","Gi0/6","Gi0/5","Gi0/4","Gi0/3","Gi0/2","Gi0/1","Gi0/0"]},{"uuid":"16a6cd43-0d7b-438e-8ea4-e81695c95889","interface":["Vl1479","Vl1478","Vl1477","Vl10","Vl1","Nu0","Gi0/9","Gi0/8","Gi0/7","Gi0/6","Gi0/5","Gi0/4","Gi0/3","Gi0/2","Gi0/1","Gi0/0"]}]}}
+2023-03-14-17:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-17:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+2023-03-14-17:36[taskScheduler-3] [ERROR] org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.IllegalStateException: The remote endpoint was in state [TEXT_FULL_WRITING] which is an invalid state for called method
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.checkState(WsRemoteEndpointImplBase.java:1258) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.textStart(WsRemoteEndpointImplBase.java:1220) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:191) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.taskSendMessageByUserId(NoticeEndpoint.java:389) ~[classes/:?]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.topologyDeviceDT(NoticeEndpoint.java:456) ~[classes/:?]
+	at sun.reflect.GeneratedMethodAccessor51.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) [spring-context-5.3.4.jar:5.3.4]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2023-03-14-18:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-18:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+2023-03-14-18:28[taskScheduler-7] [ERROR] org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.IllegalStateException: The remote endpoint was in state [TEXT_FULL_WRITING] which is an invalid state for called method
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.checkState(WsRemoteEndpointImplBase.java:1258) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.textStart(WsRemoteEndpointImplBase.java:1220) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:191) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.taskSendMessageByUserId(NoticeEndpoint.java:389) ~[classes/:?]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.ExecutionTimer2(NoticeEndpoint.java:493) ~[classes/:?]
+	at sun.reflect.GeneratedMethodAccessor54.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) [spring-context-5.3.4.jar:5.3.4]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2023-03-14-19:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-19:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+2023-03-14-20:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-20:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+2023-03-14-20:34[taskScheduler-8] [ERROR] org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.IllegalStateException: The remote endpoint was in state [TEXT_FULL_WRITING] which is an invalid state for called method
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.checkState(WsRemoteEndpointImplBase.java:1258) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.textStart(WsRemoteEndpointImplBase.java:1220) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:191) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.taskSendMessageByUserId(NoticeEndpoint.java:389) ~[classes/:?]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.topologyDeviceDT(NoticeEndpoint.java:456) ~[classes/:?]
+	at sun.reflect.GeneratedMethodAccessor51.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) [spring-context-5.3.4.jar:5.3.4]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2023-03-14-20:42[taskScheduler-8] [ERROR] org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.IllegalStateException: The remote endpoint was in state [TEXT_FULL_WRITING] which is an invalid state for called method
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.checkState(WsRemoteEndpointImplBase.java:1258) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.textStart(WsRemoteEndpointImplBase.java:1220) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:191) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.taskSendMessageByUserId(NoticeEndpoint.java:389) ~[classes/:?]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.topologyDeviceDT(NoticeEndpoint.java:456) ~[classes/:?]
+	at sun.reflect.GeneratedMethodAccessor51.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) [spring-context-5.3.4.jar:5.3.4]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2023-03-14-20:51[taskScheduler-1] [ERROR] org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.IllegalStateException: The remote endpoint was in state [TEXT_FULL_WRITING] which is an invalid state for called method
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.checkState(WsRemoteEndpointImplBase.java:1258) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.textStart(WsRemoteEndpointImplBase.java:1220) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:191) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.taskSendMessageByUserId(NoticeEndpoint.java:389) ~[classes/:?]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.topologyDeviceDT(NoticeEndpoint.java:456) ~[classes/:?]
+	at sun.reflect.GeneratedMethodAccessor51.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) [spring-context-5.3.4.jar:5.3.4]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2023-03-14-21:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-21:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+2023-03-14-22:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-22:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+2023-03-14-22:59[taskScheduler-5] [ERROR] org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.IllegalStateException: The remote endpoint was in state [TEXT_FULL_WRITING] which is an invalid state for called method
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.checkState(WsRemoteEndpointImplBase.java:1258) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateMachine.textStart(WsRemoteEndpointImplBase.java:1220) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:191) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.taskSendMessageByUserId(NoticeEndpoint.java:389) ~[classes/:?]
+	at com.metoo.nspm.core.config.socket.NoticeEndpoint.ExecutionTimer2(NoticeEndpoint.java:493) ~[classes/:?]
+	at sun.reflect.GeneratedMethodAccessor54.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.3.4.jar:5.3.4]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) [spring-context-5.3.4.jar:5.3.4]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_131]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_131]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2023-03-14-23:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Validating all active sessions...
+2023-03-14-23:25[SessionValidationThread-1] [INFO ] org.apache.shiro.session.mgt.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
