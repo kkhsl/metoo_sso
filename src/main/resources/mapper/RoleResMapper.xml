@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.metoo.ws.core.mapper.RoleResMapper">
+<mapper namespace="com.metoo.nspm.core.mapper.RoleResMapper">
 
-    <insert id="insert" parameterType="com.metoo.ws.core.entity.RoleRes" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" parameterType="com.metoo.nspm.entity.RoleRes" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO  metoo_role_res
         (role_id, res_id)
         VALUES

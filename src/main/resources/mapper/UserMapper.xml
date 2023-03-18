@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.metoo.ws.core.mapper.UserMapper">
+<mapper namespace="com.metoo.nspm.core.mapper.UserMapper">
 
-    <resultMap id="Base_User_Map" type="com.metoo.ws.core.entity.User">
+    <resultMap id="Base_User_Map" type="com.metoo.nspm.entity.User">
         <id column="mu_id" property="id"/>
         <result column="mu_addTime" property="addTime"></result>
         <result column="mu_username" property="username"></result>
@@ -10,7 +10,7 @@
         <result column="mu_sex" property="sex"></result>
         <result column="mu_age" property="age"></result>
         <!--角色信息-->
-        <collection property="roles" javaType="list" ofType="com.metoo.ws.core.entity.Role">
+        <collection property="roles" javaType="list" ofType="com.metoo.nspm.entity.Role">
             <id column="mr_id" property="id"/>
             <result column="mr_name" property="name"></result>
             <result column="mr_roleCode" property="roleCode"></result>
@@ -18,7 +18,7 @@
         </collection>
     </resultMap>
 
-    <resultMap id="Base_Update_Map" type="com.metoo.ws.core.vo.UserVo">
+    <resultMap id="Base_Update_Map" type="com.metoo.nspm.core.vo.UserVo">
         <id column="mu_id" property="id"></id>
         <result column="mu_addTime" property="addTime"></result>
         <result column="mu_username" property="username"></result>
@@ -46,7 +46,7 @@
         age, userRole, email, mobile, note, groupId, groupName, groupLevel
     </sql>
 
-    <select id="selectByName" parameterType="String" resultType="com.metoo.ws.core.entity.User">
+    <select id="selectByName" parameterType="String" resultType="com.metoo.nspm.entity.User">
         SELECT
             id,
             username,
@@ -63,7 +63,7 @@
         deleteStatus >= 0
     </select>
 
-    <select id="selectObjById" resultType="com.metoo.ws.core.entity.User">
+    <select id="selectObjById" resultType="com.metoo.nspm.entity.User">
         SELECT <include refid="Base_Column_List" />
         FROM metoo_user
         WHERE id=#{id, jdbcType=BIGINT}
