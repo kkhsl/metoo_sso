@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.metoo.nspm.core.api.service.*;
 import com.metoo.nspm.core.config.redis.MyRedisManager;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.cache.CacheException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -141,18 +142,65 @@ public class NoticeEndpoint {
      */
     @OnClose
     public void onClose() {
-        log.info(this.sid + "连接断开！");
-
-        clients.remove(this.sid);
+        log.info(this.sid + " Connection break！");
 
         // 清除 redis
+        try {
+            outCycle:for (String key : taskParams.keySet()){
+                log.info(this.sid + " start del！");
+                Map<String, String> params = taskParams.get(key);
+                log.info(this.sid + " task:" + params);
+                for(String type : params.keySet()){
+                    log.info(this.sid + " task: for");
+                    if(!type.equals("") && !type.equals("userId")){
+                        String hkey = this.sid + ":" + type + ":0";
 
+                        log.info(this.sid + " hkey " + hkey);
 
-        /**
-         * 清除定时任务信息
-         *
-         */
-        taskParams.remove(this.sid);
+                        Object value = redisWss.get(hkey);
+                        log.info(this.sid + " hkey value " + value);
+
+                        if(value != null){
+                            Integer v = (Integer) redisWss.remove(hkey);
+                            log.info(this.sid + " Delete success + 0：" + v);
+                        }else{
+
+                           String hkey1 = this.sid + ":" + type + ":1";
+
+                            log.info(this.sid + " hkey1 " + hkey1);
+
+                           value = redisWss.get(hkey1);
+
+                            log.info(this.sid + " hkey1 value " + value);
+
+                           if(value != null){
+                               Integer v = (Integer) redisWss.remove(hkey1);
+                               log.info(this.sid + " Delete success + 1：" + v);
+                           }
+                        }
+                    }else {
+                        continue ;// outCycle
+                    }
+                }
+            }
+        } catch (Exception e){
+            log.info(this.sid + " Fail to delete！");
+        } finally {
+
+            /**
+             * 清除 记录连接的客户端
+             */
+            clients.remove(this.sid);
+
+            /**
+             * 清除定时任务信息
+             *
+             */
+            taskParams.remove(this.sid);
+
+            log.info(this.sid + " Close end！");
+        }
+
     }
 
     /**
@@ -295,7 +343,6 @@ public class NoticeEndpoint {
                     // 接收消息
                     parseParams2(message);
                     Map map = JSONObject.parseObject(message, Map.class);
-
 
                     Object prm = parseParam(sid, map);
 
@@ -479,6 +526,7 @@ public class NoticeEndpoint {
                         // 生成key
                         String key = sid + ":" + noticeWebsocketResp.getNoticeType() + ":" + "1";
                         Object v = redisWss.get(key);
+                        log.info("send " + v);
                         if(v != null && !v.equals("")){
                             session.getBasicRemote().sendText(message);
                         }

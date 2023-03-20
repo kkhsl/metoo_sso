@@ -20,33 +20,6 @@ import java.time.Duration;
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
-    @Bean("shiroRedisTemplate")
-    public RedisTemplate<String, Object> shiroRedisTemplate(RedisConnectionFactory factory){
-
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(factory);
-
-        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
-        // 默认序列化方式：JdkSerializationRedisSerializer
-        // Json序列化配置
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
-
-        //string的序列化
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        // Key 序列化
-        template.setKeySerializer(stringRedisSerializer);
-        template.setHashKeySerializer(stringRedisSerializer);
-
-        // Value 序列化
-//        template.setHashValueSerializer(jackson2JsonRedisSerializer);
-//        template.setHashValueSerializer(jackson2JsonRedisSerializer);
-
-        return template;
-    }
 
     @Bean("redisTemplate")
     public RedisTemplate redisTemplate(RedisConnectionFactory factory){
