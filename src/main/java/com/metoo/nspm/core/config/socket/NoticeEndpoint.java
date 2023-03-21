@@ -161,8 +161,7 @@ public class NoticeEndpoint {
                         log.info(this.sid + " hkey value " + value);
 
                         if(value != null){
-                            Integer v = (Integer) redisWss.remove(hkey);
-                            log.info(this.sid + " Delete success + 0：" + v);
+                            redisWss.remove(hkey);
                         }else{
 
                            String hkey1 = this.sid + ":" + type + ":1";
@@ -174,8 +173,7 @@ public class NoticeEndpoint {
                             log.info(this.sid + " hkey1 value " + value);
 
                            if(value != null){
-                               Integer v = (Integer) redisWss.remove(hkey1);
-                               log.info(this.sid + " Delete success + 1：" + v);
+                               redisWss.remove(hkey1);
                            }
                         }
                     }else {
@@ -484,7 +482,7 @@ public class NoticeEndpoint {
      */
     @OnError
     public void onError(Throwable error) {
-        log.info("错误");
+        log.info("========= Error ==========");
         error.printStackTrace();
     }
 
@@ -613,9 +611,8 @@ public class NoticeEndpoint {
             }
         }
     }
-
-//    @Scheduled(cron = "0 */1 * * * ?")
     @Scheduled(cron = "*/10 * * * * ?")
+//    @Scheduled(cron = "0 */1 * * * ?")
     public void ExecutionTimer2() throws Exception {
         // 校验用户是否已断开，或断开时删除该用户定时任务信息
         outCycle:for (String key : taskParams.keySet()){
@@ -697,8 +694,7 @@ public class NoticeEndpoint {
         }
     }
 
-//    @Scheduled(cron = "0 */1 * * * ?")
-    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "0 */1 * * * ?")
     public void topologyDeviceDT() throws InterruptedException {
         outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
             Map<String, String> params = taskParams.get(key);
@@ -714,8 +710,7 @@ public class NoticeEndpoint {
         }
     }
 
-//    @Scheduled(cron = "0 */1 * * * ?")
-    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "0 */1 * * * ?")
     public void gatherAlarm(){
         outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
             Map<String, String> params = taskParams.get(key);

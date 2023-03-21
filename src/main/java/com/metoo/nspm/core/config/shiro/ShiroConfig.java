@@ -66,12 +66,12 @@ public class ShiroConfig {
         // 2,配置系统受限资源
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 
-        filterChainDefinitionMap.put("/index.jsp", "authc");// authc 请求这个资源需要认证和授权;参数可以为视图可以为路径（/index.jsp、/**、/path/*）
+
+        filterChainDefinitionMap.put("/notice/**", "anon");
+
         filterChainDefinitionMap.put("/user/login", "anon");// 设置所有资源都受限；避免登录资源受限，设置登录为公共资源
 
         // websocket
-        filterChainDefinitionMap.put("/websocket/api/**", "anon");
-        filterChainDefinitionMap.put("/notice/**", "anon");
 
         filterChainDefinitionMap.put("/user/register", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
@@ -87,6 +87,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/rtmp/**", "anon");
 
         filterChainDefinitionMap.put("/**", "rmb");
+
+//        filterChainDefinitionMap.put("/notice/**", "authc");
+
+        filterChainDefinitionMap.put("/index.jsp", "authc");// authc 请求这个资源需要认证和授权;参数可以为视图可以为路径（/index.jsp、/**、/path/*）
+
 
         //filterChainDefinitionMap.put("/buyer/**", "authc");
         filterChainDefinitionMap.put("/license/**", "authc");
