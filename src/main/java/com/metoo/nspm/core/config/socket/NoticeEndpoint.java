@@ -12,6 +12,7 @@ import com.metoo.nspm.core.config.redis.MyRedisManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.cache.CacheException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -42,6 +43,13 @@ import java.util.concurrent.Executors;
  * @OnClose 表示浏览器发出关闭请求的时候被调用
  * @OnMessage 表示浏览器发消息的时候被调用
  * @OnError 表示报错了
+ */
+
+/**
+ * Bug：
+ *  1，关闭连接时，定时任务未结束会导致远程Api创建Redis key
+ *     1-1：增加关闭标识，nspm创建Key时判断连接是否已关闭
+ *     1-2：自定义互斥锁，ws开启连接，创建自定义锁，ws关闭连接，将自定义互斥锁删除；Api使用时判断互斥锁是否存在（好像这两种方式都一样。。。）
  */
 @ServerEndpoint("/notice/nmap/{userId}")
 @Component
@@ -448,10 +456,17 @@ public class NoticeEndpoint {
         return resp;
     }
 
+    @Async
+    public NoticeWebsocketResp getMacDTSync(Object params)  {
+        NoticeWebsocketResp resp = this.topologyService.getMacDT(JSONObject.toJSONString(params));
+        return resp;
+    }
+
     public NoticeWebsocketResp getMacDT(Object params)  {
         NoticeWebsocketResp resp = this.topologyService.getMacDT(JSONObject.toJSONString(params));
         return resp;
     }
+
     public NoticeWebsocketResp getProblem(Object params){
         NoticeWebsocketResp resp = problemService.getProblem(JSONObject.toJSONString(params));
         return resp;
@@ -508,12 +523,59 @@ public class NoticeEndpoint {
         }
     }
 
+    // 第一次加载异步执行terminal写入redis， 并查询是否为1数据，没有，页面刷新只需等待异步执行结束，或等待定时任务返回数据
+    public static void taskSendMessageByUserId(String sid, String type) {
+        if (!StringUtils.isEmpty(sid)) {
+            Map userMap = taskParams.get(sid);
+            if (userMap != null) {
+                Session session = clients.get(sid);
+                if (session != null) {
+                    try {
+                        // 生成key
+                        String key = sid + ":" + type + ":" + "1";
+                        Object v = redisWss.get(key);
+                        log.info("send " + v);
+                        if(v != null && !v.equals("")){
+                            session.getBasicRemote().sendText(JSONObject.toJSONString(v));
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * 根据用户sid发送消息
      * @param sid
      * @param noticeWebsocketResp
      */
     public static void taskSendMessageByRedis(String sid, NoticeWebsocketResp noticeWebsocketResp) {
+        if (!StringUtils.isEmpty(sid)) {
+            String message = JSONObject.toJSONString(noticeWebsocketResp);
+            Map userMap = taskParams.get(sid);
+            if (userMap != null) {
+                Session session = clients.get(sid);
+                if (session != null) {
+                    try {
+                        // 生成key
+                        String key = sid + ":" + noticeWebsocketResp.getNoticeType() + ":" + "1";
+                        Object v = redisWss.get(key);
+                        log.info("send " + v);
+                        if(v != null && !v.equals("")){
+                            session.getBasicRemote().sendText(message);
+                        }
+                        return;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    public static void taskSendMessageByUserIdSyncRedis(String sid, NoticeWebsocketResp noticeWebsocketResp) {
         if (!StringUtils.isEmpty(sid)) {
             String message = JSONObject.toJSONString(noticeWebsocketResp);
             Map userMap = taskParams.get(sid);
@@ -611,8 +673,8 @@ public class NoticeEndpoint {
             }
         }
     }
-    @Scheduled(cron = "*/10 * * * * ?")
-//    @Scheduled(cron = "0 */1 * * * ?")
+
+    @Scheduled(cron = "0 */1 * * * ?")
     public void ExecutionTimer2() throws Exception {
         // 校验用户是否已断开，或断开时删除该用户定时任务信息
         outCycle:for (String key : taskParams.keySet()){
@@ -629,7 +691,8 @@ public class NoticeEndpoint {
         }
     }
 
-    @Scheduled(cron = "*/10 * * * * ?")
+//    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "0 */1 * * * ?")
     public void task5(){
         outCycle:for (String key : taskParams.keySet()){// 校验用户是否已断开，或断开时删除该用户定时任务信息
             Map<String, String> params = taskParams.get(key);
@@ -757,13 +820,13 @@ public class NoticeEndpoint {
         return "";
     }
 
-    public Object paramsAddSid(String sessionId, Map param){
-        if(param != null){
-            Map map = new HashMap();
-            map.put("params", param.get("params"));
-            map.put("sessionId", sessionId);
-            return map;
-        }
-        return "";
-    }
+//    public Object paramsAddSid(String sessionId, Map param){
+//        if(param != null){
+//            Map map = new HashMap();
+//            map.put("params", param.get("params"));
+//            map.put("sessionId", sessionId);
+//            return map;
+//        }
+//        return "";
+//    }
 }
