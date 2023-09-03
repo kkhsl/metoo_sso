@@ -2,12 +2,12 @@ package com.metoo.nspm.core.config.shiro;
 
 import com.metoo.nspm.core.config.application.ApplicationContextUtils;
 import com.metoo.nspm.core.config.shiro.salt.MyByteSource;
-import com.metoo.nspm.entity.Res;
-import com.metoo.nspm.entity.Role;
-import com.metoo.nspm.entity.User;
 import com.metoo.nspm.core.service.IResService;
 import com.metoo.nspm.core.service.IRoleService;
 import com.metoo.nspm.core.service.IUserService;
+import com.metoo.nspm.entity.nspm.Res;
+import com.metoo.nspm.entity.nspm.Role;
+import com.metoo.nspm.entity.nspm.User;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

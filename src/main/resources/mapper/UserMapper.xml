@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.metoo.nspm.core.mapper.UserMapper">
 
-    <resultMap id="Base_User_Map" type="com.metoo.nspm.entity.User">
+    <resultMap id="Base_User_Map" type="com.metoo.nspm.entity.nspm.User">
         <id column="mu_id" property="id"/>
         <result column="mu_addTime" property="addTime"></result>
         <result column="mu_username" property="username"></result>
@@ -10,7 +10,7 @@
         <result column="mu_sex" property="sex"></result>
         <result column="mu_age" property="age"></result>
         <!--角色信息-->
-        <collection property="roles" javaType="list" ofType="com.metoo.nspm.entity.Role">
+        <collection property="roles" javaType="list" ofType="com.metoo.nspm.entity.nspm.Role">
             <id column="mr_id" property="id"/>
             <result column="mr_name" property="name"></result>
             <result column="mr_roleCode" property="roleCode"></result>
@@ -46,7 +46,7 @@
         age, userRole, email, mobile, note, groupId, groupName, groupLevel
     </sql>
 
-    <select id="selectByName" parameterType="String" resultType="com.metoo.nspm.entity.User">
+    <select id="selectByName" parameterType="String" resultType="com.metoo.nspm.entity.nspm.User">
         SELECT
             id,
             username,
@@ -63,11 +63,49 @@
         deleteStatus >= 0
     </select>
 
-    <select id="selectObjById" resultType="com.metoo.nspm.entity.User">
+    <select id="selectObjById" resultType="com.metoo.nspm.entity.nspm.User">
         SELECT <include refid="Base_Column_List" />
         FROM metoo_user
         WHERE id=#{id, jdbcType=BIGINT}
     </select>
 
+    <select id="selectByMap" parameterType="java.util.Map" resultType="com.metoo.nspm.entity.nspm.User">
+        SELECT
+            id,
+            username,
+            password,
+            salt,
+            userRole,
+            sex,
+            age
+        FROM
+            metoo_user
+        WHERE
+         username=#{username}
+        AND
+        deleteStatus >= 0
+    </select>
+
+    <select id="selectObjByConditionQuery" parameterType="com.metoo.nspm.core.dto.UserDto" resultType="com.metoo.nspm.entity.nspm.User">
+        SELECT
+            id,
+            username,
+            password,
+            salt,
+            userRole,
+            sex,
+            age
+        FROM
+            metoo_user
+        <where>
+            <if test="username != null and username != ''">
+                AND username=#{username}
+            </if>
+            <if test="username == null or username != null">
+                AND deleteStatus >= 0
+            </if>
+        </where>
+
+    </select>
     
 </mapper>

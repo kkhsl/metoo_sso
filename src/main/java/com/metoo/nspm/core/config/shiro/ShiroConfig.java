@@ -66,6 +66,7 @@ public class ShiroConfig {
         // 2,配置系统受限资源
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 
+        filterChainDefinitionMap.put("/**", "anon");
 
         filterChainDefinitionMap.put("/notice/**", "anon");
 
@@ -81,6 +82,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/buyer/login", "anon");// 设置所有资源都受限；避免登录资源受限，设置登录为公共资源
         filterChainDefinitionMap.put("/buyer/logout", "anon");
         filterChainDefinitionMap.put("/buyer/register", "anon");
+
+
+        filterChainDefinitionMap.put("/jwt/*", "anon");
+
         filterChainDefinitionMap.put("/admin/auth/401", "anon");
         filterChainDefinitionMap.put("/admin/auth/403", "anon");
         filterChainDefinitionMap.put("/admin/auth/404", "anon");

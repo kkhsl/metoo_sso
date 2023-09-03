@@ -1,6 +1,11 @@
 package com.metoo.nspm.core.service;
 
-import com.metoo.nspm.entity.User;
+import com.github.pagehelper.Page;
+import com.metoo.nspm.core.dto.UserDto;
+import com.metoo.nspm.entity.nspm.User;
+
+import java.util.List;
+import java.util.Map;
 
 public interface IUserService {
 
@@ -12,5 +17,9 @@ public interface IUserService {
     User selectByName(String username);
 
     User selectObjById(Long id);
+
+    List<User> selectObjByMap(Map params);
+
+    Page<User> selectObjByConditionQuery(UserDto dto);
 
 }
