@@ -1,11 +1,13 @@
 package com.metoo.nspm.core.jwt.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.metoo.nspm.core.config.utils.ResponseUtil;
 import com.metoo.nspm.core.jwt.util.JwtUtil;
 import com.metoo.nspm.core.service.AuthCodeService;
 import com.metoo.nspm.core.service.IUserService;
+import com.metoo.nspm.core.utils.crypto.AesUtils;
 import com.metoo.nspm.entity.nspm.AuthCode;
 import com.metoo.nspm.entity.nspm.User;
 import org.apache.ibatis.annotations.Param;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Response;
 import java.util.Date;
+import java.util.Map;
 
 @RequestMapping("/api")
 @RestController
@@ -30,21 +33,26 @@ public class TokenManagerController {
     private IUserService userService;
 
     // 根据Code码，获取token
-    @GetMapping("/getTokenByCode")
-    public Object getToken(String code){
-        if(code == null || code.equals("") || code.length() != 8){
+    @GetMapping("/getTokenByTicket")
+    public Object getToken(@RequestParam(value = "ticket") String ticket) throws Exception {
+        if(ticket == null || ticket.equals("")){
             return ResponseUtil.badArgument("参数无效");
         }
-        AuthCode authCode = this.authCodeService.selectObjByCode(code);
-        // 验证token是否过期
-        // expired：true:过期 false:未过期
-        if(authCode != null){
-            User user = this.userService.selectObjById(authCode.getUserId());
-            if(user != null){
-                authCode.setUsername(user.getUsername());
+        String result = AesUtils.decrypt(ticket);
+        Map map = JSONObject.parseObject(result, Map.class);
+        if(map.get("code") != null && map.get("username") != null){
+            AuthCode authCode = this.authCodeService.selectObjByCode(map.get("code").toString());
+            // 验证token是否过期
+            // expired：true:过期 false:未过期
+            if(authCode != null){
+                User user = this.userService.selectObjById(authCode.getUserId());
+                if(user != null){
+                    authCode.setUsername(user.getUsername());
+                }
             }
+            return ResponseUtil.ok(authCode);
         }
-        return ResponseUtil.ok(authCode);
+        return ResponseUtil.badArgument();
     }
 
 

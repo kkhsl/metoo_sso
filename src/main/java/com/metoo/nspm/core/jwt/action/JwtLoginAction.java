@@ -1,25 +1,31 @@
 package com.metoo.nspm.core.jwt.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.github.pagehelper.Page;
 import com.metoo.nspm.core.config.utils.ResponseUtil;
 import com.metoo.nspm.core.dto.ClientDTO;
+import com.metoo.nspm.core.jwt.util.Globals;
 import com.metoo.nspm.core.jwt.util.JwtUtil;
 import com.metoo.nspm.core.service.AuthCodeService;
 import com.metoo.nspm.core.service.IClientService;
 import com.metoo.nspm.core.service.IUserService;
 import com.metoo.nspm.core.utils.CommUtil;
+import com.metoo.nspm.core.utils.crypto.AesUtils;
 import com.metoo.nspm.core.utils.query.PageInfo;
+import com.metoo.nspm.core.vo.Result;
 import com.metoo.nspm.entity.nspm.*;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -44,6 +50,8 @@ public class JwtLoginAction {
     private IUserService userService;
     @Autowired
     private AuthCodeService authCodeService;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @RequestMapping("login")
     @ResponseBody
@@ -58,23 +66,55 @@ public class JwtLoginAction {
 
         User obj = this.userService.selectByName(user.getUsername());
 
+        if(obj == null){
+            return new Result(410, "用户名错误");
+        }
+
         Md5Hash md5Hash = new Md5Hash(user.getPassword(), obj.getSalt(), 1024);
 
         if(!obj.getPassword().equals(md5Hash.toHex())){
-            return ResponseUtil.badArgument("密码错误");
+            return new Result(420, "密码错误");
         }
 
         Map payload = new HashMap();
 
         payload.put("userId", String.valueOf(obj.getId()));
 
-        String code = CommUtil.randomString(8);
+        payload.put("userName", String.valueOf(obj.getUsername()));
 
-        payload.put("code", code);
+        String code = CommUtil.randomString(8);
+//
+//        payload.put("code", code);
+
+        Map param = new HashMap();
+        param.put("username", obj.getUsername());
+        param.put("code", code);
+        String content = JSONObject.toJSONString(param);
+        String ticket = "";
+        try {
+            ticket = AesUtils.encrypt(content);
+            payload.put("ticket", ticket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String token = JwtUtil.getToken(payload);
 
-        response.setHeader("Authorization", "Bearea " + token);
+        //获取当前时间的毫秒值
+
+        String currentTime = String.valueOf(System.currentTimeMillis() + Globals.EXPIRE);
+
+        //拼接存到redis中的Key中
+//        String accessKey = ACCESS_TOKEN + user.getId() + ":" + token;
+        String accessKey = Globals.BEARER + obj.getId() + ":" + ticket; // 增加code，避免多客户端登录
+
+        //往拼接存到redis中的Key存value值
+        redisTemplate.opsForValue().set(accessKey, currentTime);
+
+        //设置redis key的过期时间 2分钟  可自定义
+        redisTemplate.expire(accessKey, Globals.EXPIRE, TimeUnit.MILLISECONDS);
+
+        response.setHeader(Globals.AUTHORIZATION, Globals.BEARER + token);
 
         // 清空其余token
 
@@ -89,7 +129,7 @@ public class JwtLoginAction {
             // 记录到数据库
             Map result = new HashMap();
             result.put("token", token);
-            result.put("code", code);
+            result.put("ticket", ticket);
             return ResponseUtil.ok(result);
         }
         return ResponseUtil.badArgument("认证失败，系统错误");

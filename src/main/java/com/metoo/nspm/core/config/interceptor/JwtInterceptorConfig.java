@@ -18,10 +18,10 @@ public class JwtInterceptorConfig implements WebMvcConfigurer {
 
     //要排除的路径,排除的路径说明不需要用户登录也可访问
     String [] excludePathPatterns = {
-            "/api/getTokenByCode",
             "/admin/login",
             "/admin/logout",
             "/admin/captcha",
+            "/api/getTokenByTicket",
             "/jwt/refreshTokenExpired",
             "/api/renew"
     };
@@ -30,6 +30,12 @@ public class JwtInterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(requestHandlerInterceptor())
                 .addPathPatterns("/**")// 拦截所有路径
-                .excludePathPatterns(excludePathPatterns);// 配置不需要拦截的路径
+                .excludePathPatterns(
+                        "/admin/login",
+                        "/admin/logout",
+                        "/admin/captcha",
+                        "/api/getTokenByTicket",
+                        "/jwt/refreshTokenExpired",
+                        "/api/renew");// 配置不需要拦截的路径
     }
 }

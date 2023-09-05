@@ -84,6 +84,7 @@ public class LoginController {
                         token.setRememberMe(false);
                     }
                     subject.login(token);
+
                     session.removeAttribute("captcha");
 
                     User user = this.userService.selectByName(username);

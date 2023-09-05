@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -39,7 +36,7 @@ public class JwtUtil {
 
     private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
-    private static final String SING = "!WR$%^YGB#$FS";
+    private static final String TOKEN_SECRET = "!WR$%^YGB#$FS";
 
     // 过期时间5分钟
     private static final long EXPIRE_TIME = 12 * 60 * 60 * 1000;
@@ -88,19 +85,37 @@ public class JwtUtil {
 
 //        String token = builder.withExpiresAt(calendar.getTime()).sign(Algorithm.HMAC256(SING));
         Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
-        String token = builder.withIssuedAt(new Date()).withExpiresAt(date).sign(Algorithm.HMAC256(SING));
+        String token = builder.withIssuedAt(new Date()).withExpiresAt(date).sign(Algorithm.HMAC256(TOKEN_SECRET));
 
         logger.info("Jwt Token：" + token);
         return token;
     }
 
 
+    public static String generateToken(Map<String, String> map) {
+        // 创建JWT Builder
+        JWTCreator.Builder builder = JWT.create();
+
+        // 设置头部信息
+        Map<String, Object> header = new HashMap<>(2);
+        header.put("Type", "Jwt");
+        header.put("alg", "HS256");
+        // 动态设置参数
+        map.forEach((k, v) -> {
+            builder.withClaim(k, v);
+        });
+        String token = builder.withHeader(header).sign(Algorithm.HMAC256(TOKEN_SECRET));
+
+        logger.info("Jwt Token：" + token);
+        return token;
+    }
+
     /**
      * 验证token 合法性
      */
     public static DecodedJWT verifyJwt(String token) {
 
-        return JWT.require(Algorithm.HMAC256(SING)).build().verify(token);
+        return JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).build().verify(token);
 
         // 创建验证对象
 
@@ -113,7 +128,6 @@ public class JwtUtil {
         SystemTest.out.println("Signature: " + DeCodeJWT.getSignature());
         SystemTest.out.println("ExpiresAt: " + DeCodeJWT.getExpiresAt());*/
     }
-
 
     /**
      * 验证token是否正确
@@ -230,7 +244,7 @@ public class JwtUtil {
     public static DecodedJWT getDecodedJWT(String token) {
         /*JWTVerifier jwtVerifier =  JWT.require(Algorithm.HMAC256(SING)).build();
         DecodedJWT DeCodeJWT = jwtVerifier.verify(token);*/
-        DecodedJWT DeCodeJWT = JWT.require(Algorithm.HMAC256(SING)).build().verify(token);
+        DecodedJWT DeCodeJWT = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).build().verify(token);
 
         return DeCodeJWT;
     }

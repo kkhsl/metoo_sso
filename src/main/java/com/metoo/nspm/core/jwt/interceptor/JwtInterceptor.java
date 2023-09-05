@@ -1,15 +1,18 @@
 package com.metoo.nspm.core.jwt.interceptor;
 
+import com.alibaba.fastjson.JSON;
 import com.auth0.jwt.exceptions.AlgorithmMismatchException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.metoo.nspm.core.jwt.util.Globals;
 import com.metoo.nspm.core.jwt.util.JwtUtil;
 import com.metoo.nspm.core.service.AuthCodeService;
 import com.metoo.nspm.entity.nspm.AuthCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -38,6 +42,54 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Autowired
     private AuthCodeService authCodeService;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+//    @Override
+//    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+////        String token = request.getHeader("token");
+//        String tokenHead = request.getHeader("Authorization");
+//
+//        String verify_code = request.getHeader("code");
+//
+//        //token头不等于空 并且以Bearer 开头进行token验证登录处理
+//        int code = 200;
+//        Map map = new HashMap();
+//        if(tokenHead == null || !tokenHead.startsWith("Bearer ")){
+//            code = 501;
+//            map.put("msg", "无效签名");
+//        }else{
+//            String token = tokenHead.replace("Bearer ", "");
+//            try {
+//                JwtUtil.verifyJwt(token);// 验证令牌
+//                return true;
+//            } catch (SignatureVerificationException e) {
+//                e.printStackTrace();
+//                map.put("msg","无效签名");
+//                code = 1001;
+//                System.out.println("无效签名");
+//            }catch (TokenExpiredException e){
+//                e.printStackTrace();
+//                code = 1002;
+//                map.put("msg","token 过期");
+//            }catch (AlgorithmMismatchException e){
+//                e.printStackTrace();
+//                code = 1003;
+//                map.put("msg","算法不一致");
+//                System.out.println("算法不一致");
+//            }catch (Exception e){
+//                e.printStackTrace();
+//                code = 1004;
+//                map.put("msg","token 无效");
+//                System.out.println("token 无效");
+//            }
+//        }
+//        map.put("code", code);
+//        String json  = new ObjectMapper().writeValueAsString(map);
+//        response.setContentType("application/json;charset=UTF-8");
+//        response.getWriter().print(json);
+//        return false;
+//    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -50,30 +102,83 @@ public class JwtInterceptor implements HandlerInterceptor {
         int code = 200;
         Map map = new HashMap();
         if(tokenHead == null || !tokenHead.startsWith("Bearer ")){
-            code = 501;
+            code = 401;
             map.put("msg", "无效签名");
         }else{
             String token = tokenHead.replace("Bearer ", "");
+            boolean flag = true;
             try {
                 JwtUtil.verifyJwt(token);// 验证令牌
-                return true;
+
+                // 1，判断是否需要续签
+                // 1-1，判断redis中是否存在该值
+                // 优化，使用token直接取出所需数据
+                DecodedJWT decodedJWT = JwtUtil.getDecodedJWT(token);
+                String userId = decodedJWT.getClaim("userId").asString();
+                String ticket = decodedJWT.getClaim("ticket").asString();
+                String accessKey = Globals.BEARER + userId + ":" + ticket; // 增加code，避免多客户端登录
+
+                if(!redisTemplate.hasKey(accessKey)){
+                    //登录失败
+                    map.put("msg","无效签名");
+                    code = 401;
+                    flag = false;
+                }else{
+                    // 时间换算
+
+                    // 1-2，判断时间是否在过期时间范围内，未超出则续签
+
+                    String token_expire_str = (String) redisTemplate.opsForValue().get(accessKey);
+
+                    Long token_expire = Long.parseLong(token_expire_str);
+
+                    Date time = new Date(token_expire);
+
+                    Date time2 = new Date();
+
+                    if(time.after(time2)){
+                        // token有限，判断有效时间，是否需要续期
+                        // 剩余时间，小于过期时间一半则过期时间，增加过期时间
+                        long time3 = time2.getTime();
+                        System.out.println(token_expire - time3);
+                        if((token_expire - time3) < Globals.EXPIRE / 2){
+
+                            String currentTime = String.valueOf(System.currentTimeMillis() + Globals.EXPIRE);
+
+                            redisTemplate.opsForValue().set(accessKey, currentTime);
+
+                            redisTemplate.expire(accessKey, Globals.EXPIRE, TimeUnit.MILLISECONDS);
+                        }
+                    }else{
+                        // 过期 退出
+                        code = 401;
+                        map.put("msg","token 过期");
+                        flag = false;
+                    }
+                }
+
+
+
+                if(flag){
+                    return true;
+                }
             } catch (SignatureVerificationException e) {
                 e.printStackTrace();
                 map.put("msg","无效签名");
-                code = 1001;
+                code = 401;
                 System.out.println("无效签名");
             }catch (TokenExpiredException e){
                 e.printStackTrace();
-                code = 1002;
+                code = 401;
                 map.put("msg","token 过期");
             }catch (AlgorithmMismatchException e){
                 e.printStackTrace();
-                code = 1003;
+                code = 401;
                 map.put("msg","算法不一致");
                 System.out.println("算法不一致");
             }catch (Exception e){
                 e.printStackTrace();
-                code = 1004;
+                code = 401;
                 map.put("msg","token 无效");
                 System.out.println("token 无效");
             }
