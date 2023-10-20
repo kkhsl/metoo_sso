@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.metoo.nspm.core.mapper.AuthCodeMapper">
 
-    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.nspm.AuthCode">
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.AuthCode">
         <result property="userId" column="userId"></result>
         <result property="code" column="code"></result>
         <result property="token" column="token"></result>
@@ -27,7 +27,7 @@
         where token = #{token}
     </select>
 
-    <insert id="save" parameterType="com.metoo.nspm.entity.nspm.AuthCode">
+    <insert id="save" parameterType="com.metoo.nspm.entity.AuthCode">
        INSERT INTO metoo_auth_token
        <trim prefix="(" suffixOverrides="," suffix=")">
            <if test="addTime != null">
@@ -59,7 +59,7 @@
         </trim>
     </insert>
 
-    <update id="update" parameterType="com.metoo.nspm.entity.nspm.AuthCode">
+    <update id="update" parameterType="com.metoo.nspm.entity.AuthCode">
         INSERT INTO metoo_auth_token
         <set>
             <if test="addTime != null">

@@ -1,7 +1,13 @@
 package com.metoo.nspm.core.config.utils;
 
-import com.metoo.nspm.core.vo.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.metoo.nspm.vo.Result;
+import org.apache.http.HttpStatus;
+import org.springframework.http.MediaType;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +58,8 @@ public class ResponseUtil {
     public static Object badArgument(String message) { return fail(400, message);} //未找到指定资源
 
     public static Object badArgumentRepeatedName() { return fail(400, "名称重复");} //未找到指定资源
+
+    public static Object sysInfo(String message) { return fail(503, message);} // 不符合系统要求
 
     public static Object badArgument(int code, String message) { return fail(code, message);} //未找到指定资源
 
@@ -113,5 +121,30 @@ public class ResponseUtil {
     public static Object result(int errno, String errmsg) {
         Result obj = new Result(errno, errmsg);
         return obj;
+    }
+
+    public static void out(HttpServletResponse response, Result r){
+        ObjectMapper mapper = new ObjectMapper();
+        response.setStatus(HttpStatus.SC_OK);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        try {
+            mapper.writeValue(response.getWriter(), r);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void outSessionId(HttpServletRequest request,
+                                    HttpServletResponse response, Result r){
+
+        ObjectMapper mapper = new ObjectMapper();
+        response.setStatus(HttpStatus.SC_OK);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+
+        try {
+            mapper.writeValue(response.getWriter(), r);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

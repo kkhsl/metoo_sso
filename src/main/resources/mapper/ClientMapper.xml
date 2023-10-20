@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.metoo.nspm.core.mapper.ClientMapper">
 
-    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.nspm.Client">
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.Client">
         <id property="id" column="id"></id>
         <result property="clientId" column="client_id"></result>
         <result property="clientSecret" column="client_secret"></result>
@@ -16,7 +16,7 @@
         id, addTime, client_id, client_secret, redirect_url, `name`
     </sql>
 
-    <select id="selectObjByConditionQuery" parameterType="com.metoo.nspm.core.dto.ClientDTO" resultMap="Base_Result_Map">
+    <select id="selectObjByConditionQuery" parameterType="com.metoo.nspm.dto.ClientDTO" resultMap="Base_Result_Map">
         SELECT <include refid="Base_Column_Sql"/>
         FROM metoo_client_detail
         <where>

@@ -14,7 +14,7 @@
         <!--192.168.5.101_nspm-->
         <!--<property name="log4j2.file.path">/opt/topology/service/nspm/logs</property>-->
         <!--192.168.5.101_nmap-->
-        <property name="log4j2.file.path">/opt/nmap/service/wss/logs</property>
+        <property name="log4j2.file.path">/opt/nmap/service/sso/logs</property>
 
     </properties>
 

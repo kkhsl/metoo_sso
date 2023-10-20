@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.SpecialtyMapper">
+
+    <resultMap id="Casecade_Result_Map" type="com.metoo.nspm.entity.Specialty">
+        <result column="zy_DM" property="DM"></result>
+        <result column="zy_ZWMC" property="MC"></result>
+        <result column="zy_BMLX_M" property="BMLX_M"></result>
+        <collection property="childs" ofType="com.metoo.nspm.entity.Class">
+            <result column="bj_BJDM" property="DM"></result>
+            <result column="bj_BJMC" property="MC"></result>
+            <result column="bj_BMLX_M" property="BMLX_M"></result>
+        </collection>
+    </resultMap>
+
+    <select id="selectObjByCasecade" parameterType="java.lang.String" resultMap="Casecade_Result_Map">
+            SELECT
+                zy.DM zy_DM,
+                (
+                    SELECT CONCAT(zy.ZWMC, '(', pycc.MC, ')') zy_ZWMC
+                    FROM metoo_ggxx_zy zy2
+                    JOIN dm_pycc pycc
+                    ON zy2.PYCC_M = pycc.DM
+                    WHERE zy2.DM = zy.DM
+                ) as zy_ZWMC, zy.BMLX_M zy_BMLX_M,
+                bj.BJDM bj_BJDM, bj.BJMC bj_BJMC, bj.BMLX_M bj_BMLX_M
+        FROM metoo_ggxx_bm bm
+        JOIN metoo_ggxx_zy zy
+        ON bm.DM = zy.SSYX_M
+        LEFT JOIN metoo_ggxx_bj bj
+        ON zy.DM = bj.ZY_M
+        where bm.DM = #{bm_dm}
+    </select>
+
+    <select id="selectObjByConcat" parameterType="java.lang.String" resultMap="Casecade_Result_Map">
+            SELECT zy.DM zy_DM, CONCAT(zy.ZWMC, '(', pycc.MC, ')') zy_ZWMC FROM metoo_ggxx_zy zy
+            JOIN dm_pycc pycc
+            ON zy.PYCC_M = pycc.DM
+            WHERE zy.DM = #{dm}
+    </select>
+
+</mapper>

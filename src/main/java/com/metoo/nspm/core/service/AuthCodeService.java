@@ -1,6 +1,6 @@
 package com.metoo.nspm.core.service;
 
-import com.metoo.nspm.entity.nspm.AuthCode;
+import com.metoo.nspm.entity.AuthCode;
 
 public interface AuthCodeService {
 

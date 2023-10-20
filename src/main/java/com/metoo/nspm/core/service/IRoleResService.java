@@ -1,6 +1,6 @@
 package com.metoo.nspm.core.service;
 
-import com.metoo.nspm.entity.nspm.RoleRes;
+import com.metoo.nspm.entity.RoleRes;
 
 import java.util.List;
 

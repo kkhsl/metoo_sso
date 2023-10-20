@@ -2,16 +2,14 @@ package com.metoo.nspm.core.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.metoo.nspm.core.dto.ClientDTO;
+import com.metoo.nspm.dto.ClientDTO;
 import com.metoo.nspm.core.mapper.ClientMapper;
 import com.metoo.nspm.core.service.IClientService;
-import com.metoo.nspm.entity.nspm.Client;
-import com.metoo.nspm.entity.nspm.NetworkElement;
+import com.metoo.nspm.entity.Client;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 @Service
 @Transactional

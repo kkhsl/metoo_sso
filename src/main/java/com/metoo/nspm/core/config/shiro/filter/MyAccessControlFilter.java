@@ -1,7 +1,7 @@
 package com.metoo.nspm.core.config.shiro.filter;
 
 import com.alibaba.fastjson.JSONObject;
-import com.metoo.nspm.core.vo.Result;
+import com.metoo.nspm.vo.Result;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class MyAccessControlFilter extends AccessControlFilter {
 

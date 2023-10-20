@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.XsglXsMapper">
+
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.XsglXs">
+        <result column="DM" property="DM"></result>
+        <result column="XH" property="XH"></result>
+        <result column="XM" property="XM"></result>
+        <result column="SFZH" property="SFZH"></result>
+        <result column="XB_MC" property="XB_MC"></result>
+        <result column="SZBJ_MC" property="SZBJ_MC"></result>
+        <result column="SJHM" property="SJHM"></result>
+    </resultMap>
+
+
+    <select id="selectObjByConditionQuery" parameterType="com.metoo.nspm.dto.XsglXsDTO" resultMap="Base_Result_Map">
+        SELECT xs.DM, xs.XH, xs.XM, xs.SFZH, xs.SJHM, xb.MC XB_MC, bj.BJMC SZBJ_MC
+        FROM metoo_xsgl_xs xs
+        LEFT JOIN dm_xb xb
+        ON xs.XB_M = xb.DM
+        LEFT JOIN metoo_ggxx_bj bj
+        ON xs.SZBJ_M = bj.BJDM
+        <where>
+            <if test="XM != null and XM !='' ">
+                xs.XM = #{XM}
+            </if>
+        </where>
+    </select>
+</mapper>

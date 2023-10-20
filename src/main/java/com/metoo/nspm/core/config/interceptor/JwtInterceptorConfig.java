@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
+//@Configuration
 public class JwtInterceptorConfig implements WebMvcConfigurer {
 
     @Bean
@@ -36,6 +36,7 @@ public class JwtInterceptorConfig implements WebMvcConfigurer {
                         "/admin/captcha",
                         "/api/getTokenByTicket",
                         "/jwt/refreshTokenExpired",
-                        "/api/renew");// 配置不需要拦截的路径
+                        "/api/renew",
+                        "/admin/sendmsg");// 配置不需要拦截的路径
     }
 }

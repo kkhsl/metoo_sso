@@ -4,8 +4,8 @@
 //import com.metoo.nspm.core.service.IUserService;
 //import com.metoo.nspm.core.utils.CaptchaUtil;
 //import com.metoo.nspm.core.utils.CookieUtil;
-//import com.metoo.nspm.core.vo.Result;
-//import com.metoo.nspm.entity.nspm.User;
+//import com.metoo.nspm.vo.Result;
+//import User;
 //import io.swagger.annotations.Api;
 //import io.swagger.annotations.ApiOperation;
 //import io.swagger.annotations.ApiParam;

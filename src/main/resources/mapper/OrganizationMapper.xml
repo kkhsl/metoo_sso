@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.OrganizationMapper">
+
+
+    <resultMap id="View_Result_Map" type="com.metoo.nspm.entity.Campus">
+        <result column="xq_DM" property="DM"></result>
+        <result column="xq_MC" property="MC"></result>
+        <collection property="childs" ofType="com.metoo.nspm.entity.Department">
+            <result column="bm_DM" property="DM"></result>
+            <result column="bm_ZWMC" property="MC"></result>
+            <result column="bm_BMLX_M" property="BMLX_M"></result>
+        </collection>
+    </resultMap>
+
+    <select id="ggxxOrganizationQuery" resultMap="View_Result_Map">
+       SELECT
+            xq.DM xq_DM, xq.MC xq_MC,
+            bm.DM bm_DM, bm.ZWMC bm_ZWMC, bm.BMLX_M bm_BMLX_M
+        FROM metoo_ggxx_xq xq
+        LEFT JOIN metoo_ggxx_bm bm
+        ON xq.DM = bm.XQ_M
+    </select>
+
+</mapper>

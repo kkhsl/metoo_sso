@@ -21,6 +21,19 @@ public class CommUtil {
         return new String(randBuffer);
     }
 
+    public static final String randomInt(int length) {
+        char[] numbersAndLetters = ("0123456789").toCharArray();
+        if (length < 1) {
+            return "";
+        }
+        Random randGen = new Random();
+        char[] randBuffer = new char[length];
+        for (int i = 0; i < randBuffer.length; i++) {
+            randBuffer[i] = numbersAndLetters[randGen.nextInt(10)];
+        }
+        return new String(randBuffer);
+    }
+
     public static void main(String[] args) {
         String code = randomString(8);
         System.out.println(code);

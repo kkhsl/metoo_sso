@@ -1,1 +1,22 @@
 SSO认证中心
+
+<resultMap id="View_Result_Map" type="com.metoo.nspm.entity.Campus">
+        <result column="xq_DM" property="DM"></result>
+        <result column="xq_MC" property="MC"></result>
+        <collection property="childs" ofType="com.metoo.nspm.entity.Department">
+            <result column="bm_DM" property="DM"></result>
+            <result column="bm_ZWMC" property="MC"></result>
+            <collection property="childs" ofType="com.metoo.nspm.entity.Specialty">
+                <result column="zy_DM" property="DM"></result>
+                <result column="zy_ZWMC" property="MC"></result>
+                <collection property="childs" ofType="com.metoo.nspm.entity.Class">
+                    <result column="bj_BJDM" property="DM"></result>
+                    <result column="bj_BJMC" property="MC"></result>
+                </collection>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="ggxxOrganizationQuery" resultMap="View_Result_Map">
+        SELECT * FROM ggxx_organization_query;
+    </select>

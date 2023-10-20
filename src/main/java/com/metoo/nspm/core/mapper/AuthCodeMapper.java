@@ -1,8 +1,7 @@
 package com.metoo.nspm.core.mapper;
 
-import com.metoo.nspm.entity.nspm.AuthCode;
+import com.metoo.nspm.entity.AuthCode;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.data.map.repository.config.EnableMapRepositories;
 
 //@EnableMapRepositories
 @Mapper

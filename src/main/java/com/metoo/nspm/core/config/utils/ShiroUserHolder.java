@@ -1,20 +1,14 @@
 package com.metoo.nspm.core.config.utils;
 
 import com.metoo.nspm.core.config.application.ApplicationContextUtils;
+import com.metoo.nspm.core.config.cas.threadLocal.RequestHolder;
 import com.metoo.nspm.core.service.IUserService;
-import com.metoo.nspm.entity.nspm.User;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.metoo.nspm.entity.User;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class ShiroUserHolder {
-
-    @Autowired
-    private IUserService userService;
 
 //    public static User currentUser() {
 //        if (SecurityUtils.getSubject() != null){
@@ -32,8 +26,16 @@ public class ShiroUserHolder {
 //        return null;
 //    }
 
-//    public static User currentUser(HttpServletRequest request) {
-//
-//    }
-
+    public static User currentUser() {
+        String username = RequestHolder.getCurrentUser();
+        if(Strings.isNotBlank(username)){
+            IUserService userService = (IUserService) ApplicationContextUtils.getBean("userServiceImpl");
+            User user = userService.selectObjByMobile(username);
+            if(user == null){
+                user = userService.selectByName(username);
+            }
+            return user;
+        }
+        return null;
+    }
 }

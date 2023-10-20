@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.DepartmentMapper">
+
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.Department">
+        <result column="DM" property="DM"></result>
+        <result column="ZWMC" property="MC"></result>
+        <result column="bm_BMLX_M" property="BMLX_M"></result>
+    </resultMap>
+
+    <select id="selectObjByParentDm" parameterType="java.lang.String" resultMap="Base_Result_Map">
+       SELECT
+            bm.DM, bm.ZWMC, bm.BMLX_M bm_BMLX_M
+        FROM metoo_ggxx_bm bm
+        where SJ_DM = #{dm}
+    </select>
+
+    <select id="selectObjByDm" parameterType="java.lang.String" resultMap="Base_Result_Map">
+       SELECT
+            bm.DM, bm.ZWMC
+        FROM metoo_ggxx_bm bm
+        where DM = #{dm}
+    </select>
+
+</mapper>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.GroupNodeMapper">
+
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.GroupNode">
+        <id column="id" property="id"></id>
+        <result column="departmentManager" property="departmentManager"></result>
+        <result column="classTearch" property="classTearch"></result>
+        <result column="teacher" property="teacher"></result>
+        <result column="monitor" property="monitor"></result>
+        <result column="president" property="president"></result>
+        <result column="gradGroupLeader" property="gradGroupLeader"></result>
+        <result column="groupLeader" property="groupLeader"></result>
+        <result column="groupId" property="groupId"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, departmentManager, classTearch, teacher, monitor, president, gradGroupLeader, groupLeader, groupId
+    </sql>
+
+    <select id="selectObjByGroupId" parameterType="java.lang.Long" resultMap="Base_Result_Map">
+        SELECT <include refid="Base_Column_List" />
+        FROM metoo_group_node
+        WHERE groupId = #{groupId}
+    </select>
+
+    <insert id="save" parameterType="com.metoo.nspm.entity.GroupNode">
+        INSERT INTO metoo_group_node
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="departmentManager != null and departmentManager != ''">
+                departmentManager,
+            </if>
+            <if test="classTearch != null and classTearch != ''">
+                classTearch,
+            </if>
+            <if test="teacher != null and teacher != ''">
+                teacher,
+            </if>
+            <if test="monitor != null and monitor != ''">
+                monitor,
+            </if>
+            <if test="president != null and president != ''">
+                president,
+            </if>
+            <if test="gradGroupLeader != null and gradGroupLeader != ''">
+                gradGroupLeader,
+            </if>
+            <if test="groupLeader != null and groupLeader != ''">
+                groupLeader,
+            </if>
+            <if test="groupId != null and groupId != ''">
+                groupId,
+            </if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="departmentManager != null and departmentManager != ''">
+                #{departmentManager},
+            </if>
+            <if test="classTearch != null and classTearch != ''">
+               #{classTearch},
+            </if>
+            <if test="teacher != null and teacher != ''">
+                #{teacher},
+            </if>
+            <if test="monitor != null and monitor != ''">
+                #{monitor},
+            </if>
+            <if test="president != null and president != ''">
+                #{president},
+            </if>
+            <if test="gradGroupLeader != null and gradGroupLeader != ''">
+                #{gradGroupLeader},
+            </if>
+            <if test="groupLeader != null and groupLeader != ''">
+                #{groupLeader},
+            </if>
+            <if test="groupId != null and groupId != ''">
+                #{groupId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.metoo.nspm.entity.GroupNode">
+        UPDATE metoo_group_node
+        <set>
+            <if test="departmentManager != null and departmentManager != ''">
+                departmentManager = #{departmentManager},
+            </if>
+            <if test="classTearch != null and classTearch != ''">
+                classTearch = #{classTearch},
+            </if>
+            <if test="teacher != null and teacher != ''">
+                teacher = #{teacher},
+            </if>
+            <if test="monitor != null and monitor != ''">
+                monitor = #{monitor},
+            </if>
+            <if test="president != null and president != ''">
+                president = #{president},
+            </if>
+            <if test="gradGroupLeader != null and gradGroupLeader != ''">
+                gradGroupLeader = #{gradGroupLeader},
+            </if>
+            <if test="groupLeader != null and groupLeader != ''">
+                groupLeader = #{groupLeader},
+            </if>
+            <if test="groupId != null and groupId != ''">
+                groupId = #{groupId},
+            </if>
+        </set>
+        where groupId = #{groupId}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM metoo_group_node WHERE id = #{id}
+    </delete>
+</mapper>

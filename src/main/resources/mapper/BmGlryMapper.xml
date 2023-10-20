@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.BmGlryMapper">
+
+    <select id="selectObjByBM_M" parameterType="java.lang.String" resultType="com.metoo.nspm.entity.BmGlry">
+         SELECT glry.*, jzg.XM GLRY_MC
+         FROM metoo_ggxx_bm_glry glry
+	     JOIN metoo_ggxx_jzg jzg
+	     ON glry.GLRY_M = jzg.DM
+	     WHERE BM_M = #{bm_m}
+    </select>
+
+</mapper>

@@ -2,14 +2,14 @@ package com.metoo.nspm.core.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.metoo.nspm.core.dto.RoleDto;
+import com.metoo.nspm.dto.RoleDto;
 import com.metoo.nspm.core.mapper.RoleMapper;
 import com.metoo.nspm.core.service.IResService;
 import com.metoo.nspm.core.service.IRoleResService;
 import com.metoo.nspm.core.service.IRoleService;
-import com.metoo.nspm.entity.nspm.Res;
-import com.metoo.nspm.entity.nspm.Role;
-import com.metoo.nspm.entity.nspm.RoleRes;
+import com.metoo.nspm.entity.Res;
+import com.metoo.nspm.entity.Role;
+import com.metoo.nspm.entity.RoleRes;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

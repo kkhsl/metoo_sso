@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.BmlxMapper">
+
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.Bmlx">
+        <result column="DM" property="DM"></result>
+        <result column="MC" property="MC"></result>
+        <result column="FLAG" property="FLAG"></result>
+        <result column="BZ" property="BZ"></result>
+        <result column="ZT" property="ZT"></result>
+    </resultMap>
+
+    <select id="selectObjByDM" parameterType="java.lang.String" resultMap="Base_Result_Map">
+        SELECT * FROM dm_dwlb where DM = #{dm}
+    </select>
+
+</mapper>

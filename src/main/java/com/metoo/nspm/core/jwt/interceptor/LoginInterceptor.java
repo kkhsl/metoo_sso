@@ -4,7 +4,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.github.pagehelper.util.StringUtil;
 import com.metoo.nspm.core.jwt.util.JwtUtil;
 import com.metoo.nspm.core.service.IUserService;
-import com.metoo.nspm.entity.nspm.User;
+import com.metoo.nspm.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.HandlerMethod;

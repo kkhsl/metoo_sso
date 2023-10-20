@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.JzgMapper">
+
+    <resultMap id="Base_Result_Map" type="com.metoo.nspm.entity.Jzg">
+        <result column="DM" property="DM"></result>
+        <result column="GH" property="GH"></result>
+        <result column="XM" property="XM"></result>
+        <result column="YDDH" property="YDDH"></result>
+        <result column="XB_MC" property="XB_MC"></result>
+        <result column="SSDW_MC" property="SSDW_MC"></result>
+    </resultMap>
+
+    <select id="selectObjByConditionQuery" parameterType="com.metoo.nspm.dto.JzgDTO" resultMap="Base_Result_Map">
+            SELECT
+              jzg.DM, jzg.GH, jzg.XM, jzg.YDDH,
+              xb.MC XB_MC,
+              bm.ZWMC SSDW_MC
+            FROM metoo_ggxx_jzg jzg
+            LEFT JOIN dm_xb xb
+            ON jzg.XB_M = xb.DM
+            LEFT JOIN metoo_ggxx_bm bm
+            ON jzg.SSDW_M = bm.DM
+            <where>
+                <if test="XM != null and XM !='' ">
+                    jzg.XM = #{XM}
+                </if>
+            </where>
+    </select>
+</mapper>

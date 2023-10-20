@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<span>单点地址：</span><input class="url" type="text"/><br>
+
+<button type="button" class="button">登录</button><br>
+
+<div class="response" style="width: 200px;height:200px;border: 1px solid #3333;"></div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(".button").click(function(){
+        $.get("http://java1234.com:9000/sso/auth", function(data){
+            $(".response").text(data)
+            if(data == 401){
+                window.location.href = "https://java1234.com:8443/cas/login?service=http://java1234.com:9000/sso/auth?redirectUrl=http://java1234.com:9000/sso/admin/index"
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metoo.nspm.core.mapper.LoginLogMapper">
+
+    <select id="selectObjByConditionQuery" parameterType="com.metoo.nspm.dto.LoginLogDTO" resultType="com.metoo.nspm.entity.LoginLog">
+        SELECT *
+        FROM metoo_login_log
+        <where>
+            <if test="loginName != null and loginName != ''">
+                AND `loginName` = #{loginName}
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                AND `loginIp` = #{loginIp}
+            </if>
+            <if test="startTime != null">
+                and loginTime &gt;= #{startTime}
+            </if>
+            <if test="endTime != null">
+                and loginTime &lt;= #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.metoo.nspm.entity.LoginLog">
+        INSERT INTO metoo_login_log
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="loginName != null and loginName != ''">
+                `loginName`,
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                `loginIp`,
+            </if>
+            <if test="loginTime != null">
+                loginTime,
+            </if>
+        </trim>
+        <trim prefix="VALUES(" suffixOverrides="," suffix=")">
+            <if test="loginName != null and loginName != ''">
+                #{loginName},
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                #{loginIp},
+            </if>
+            <if test="loginTime != null">
+                #{loginTime},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

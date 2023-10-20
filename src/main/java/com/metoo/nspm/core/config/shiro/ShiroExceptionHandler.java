@@ -1,7 +1,7 @@
 package com.metoo.nspm.core.config.shiro;
 
 
-import com.metoo.nspm.core.vo.Result;
+import com.metoo.nspm.vo.Result;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationException;

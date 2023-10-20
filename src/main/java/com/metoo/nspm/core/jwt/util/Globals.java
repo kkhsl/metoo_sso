@@ -12,6 +12,9 @@ public class Globals {
 
     public final static String AES_KEY = "#+NPzwDvPmCJvpY@";
 
+//    public final static String AUTH_URL = "https://java1234.com:18443/cas/login?service=http://java1234.com:8089/auth?redirectUrl=http://java1234.com";
+public final static String AUTH_URL = "https://java1234.com:18443/cas/login?service=http://java1234.com/cas/auth?redirectUrl=http://java1234.com";
+
     public Globals() {
     }
 

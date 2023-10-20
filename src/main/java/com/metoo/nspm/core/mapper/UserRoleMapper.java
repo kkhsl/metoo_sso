@@ -1,6 +1,6 @@
 package com.metoo.nspm.core.mapper;
 
-import com.metoo.nspm.entity.nspm.UserRole;
+import com.metoo.nspm.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

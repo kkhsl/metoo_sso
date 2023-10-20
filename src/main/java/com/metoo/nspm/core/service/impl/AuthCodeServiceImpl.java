@@ -2,7 +2,7 @@ package com.metoo.nspm.core.service.impl;
 
 import com.metoo.nspm.core.mapper.AuthCodeMapper;
 import com.metoo.nspm.core.service.AuthCodeService;
-import com.metoo.nspm.entity.nspm.AuthCode;
+import com.metoo.nspm.entity.AuthCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,8 +1,8 @@
 package com.metoo.nspm.core.service;
 
 import com.github.pagehelper.Page;
-import com.metoo.nspm.core.dto.ResDto;
-import com.metoo.nspm.entity.nspm.Res;
+import com.metoo.nspm.dto.ResDto;
+import com.metoo.nspm.entity.Res;
 
 import java.util.Collection;
 import java.util.List;

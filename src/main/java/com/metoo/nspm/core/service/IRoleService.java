@@ -1,8 +1,8 @@
 package com.metoo.nspm.core.service;
 
 import com.github.pagehelper.Page;
-import com.metoo.nspm.core.dto.RoleDto;
-import com.metoo.nspm.entity.nspm.Role;
+import com.metoo.nspm.dto.RoleDto;
+import com.metoo.nspm.entity.Role;
 
 import java.util.List;
 import java.util.Map;
