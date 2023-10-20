@@ -38,8 +38,6 @@ public class ClientCas20ProxyReceivingTicketValidationFilter extends Cas20ProxyR
 //            System.out.println(session.getId());
 //            System.out.println(request.getRequestedSessionId());
 //            ResponseUtil.out(response, Result.build(200, "认证通过"));
-            System.out.println("认证成功");
-
             if(assertion != null){
                 if(assertion.getPrincipal() != null){
                     String userName = assertion.getPrincipal().toString();
